@@ -4,6 +4,10 @@
 
 https://realpython.com/python-send-email/
 
+# Set up local SMTP Server for testing purposes
+
+    python -m smtpd -c DebuggingServer -n localhost:1025
+
 # Python virtual enviornment set up
 
 Python 3 comes with a virtual enviornment module built-in called 'venv'. There's no need to download anything. Just jump in and create a vm
