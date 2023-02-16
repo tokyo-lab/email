@@ -1,20 +1,16 @@
 import smtplib
-import ssl
+import email.utils
+from email.mime.text import MIMEText
 
-port = 465  # For SSL
-smtp_server = "smtp.protonmail.com"
-sender_email = "sonicstash@protonmail.com"
-receiver_email = "michael.mena.g@gmail.com"
-password = "JDQ3bsT1!h6$fsre!nwk"
-subject = "test emai from python"
-message = """
-This message is sent from Python.
-"""
+# Create the message
+msg = MIMEText("This is the body of the message.")
+msg["To"] = email.utils.formataddr(("Recipient", "recipient@example.com"))
+msg["From"] = email.utils.formataddr(("Author", "author@example.com"))
+msg["Subject"] = "Simple test message"
 
-context = ssl.create_default_context()
-
-
-context = ssl.create_default_context()
-with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-    server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, message)
+server = smtplib.SMTP("127.0.0.1", 1025)
+server.set_debuglevel(True)  # show communication with the server
+try:
+    server.sendmail("author@example.com", ["recipient@example.com"], msg.as_string())
+finally:
+    server.quit()
