@@ -1,16 +1,18 @@
 import smtplib
-import email.utils
-from email.mime.text import MIMEText
 
-# Create the message
-msg = MIMEText("This is the body of the message.")
-msg["To"] = email.utils.formataddr(("Recipient", "recipient@example.com"))
-msg["From"] = email.utils.formataddr(("Author", "author@example.com"))
-msg["Subject"] = "Simple test message"
+port = 1025
+smtp_server = "localhost"
+sender_email = "sonicstash@protonmail.com"
+receiver_email = "michael.mena.g@gmail.com"
+password = "JDQ3bsT1!h6$fsre!nwk"
+subject = "test emai from python"
+message = """
+This message is sent from Python.
+"""
 
-server = smtplib.SMTP("127.0.0.1", 1025)
-server.set_debuglevel(True)  # show communication with the server
-try:
-    server.sendmail("author@example.com", ["recipient@example.com"], msg.as_string())
-finally:
-    server.quit()
+server = smtplib.SMTP("smtp.gmail.com", 587)
+server.starttls()
+server.login(sender_email, password)
+print("Login Success")
+server.sendmail(sender_email, receiver_email, message)
+print("Email has been sent to", receiver_email)
