@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-port = 1025
-smtp_server = "localhost"
-sender_email = "nymhooman@gmail.com"
-receiver_email = "michael.mena.g@gmail.com"
+port = str(os.environ.get("port"))
+smtp_server = str(os.environ.get("smtp_server"))
+sender_email = str(os.environ.get("sender_email"))
+receiver_email = str(os.environ.get("receiver_email"))
 password = str(os.environ.get("password"))
 subject = "test emai from python"
 message = """
