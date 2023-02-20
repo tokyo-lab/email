@@ -1,14 +1,19 @@
 import smtplib
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 port = 1025
 smtp_server = "localhost"
-sender_email = "sonicstash@protonmail.com"
+sender_email = "nymhooman@gmail.com"
 receiver_email = "michael.mena.g@gmail.com"
-password = "JDQ3bsT1!h6$fsre!nwk"
+password = str(os.environ.get("password"))
 subject = "test emai from python"
 message = """
 This message is sent from Python.
 """
+
 
 server = smtplib.SMTP("smtp.gmail.com", 587)
 server.starttls()
